@@ -24,6 +24,8 @@ public class CustomerRestController {
 		
 	}
 
+	// get customer /w provided id
+
 	@GetMapping("/customers/{id}")
 	public Customer getCustomer(@PathVariable int id) {
 
@@ -37,10 +39,23 @@ public class CustomerRestController {
 
 	}
 
+	// add new customer
+
 	@PostMapping("/customers")
 	public Customer addCustomer(@RequestBody Customer customer) {
 
 		customer.setId(0);
+
+		customerService.saveCustomer(customer);
+
+		return customer;
+
+	}
+
+	// update existing customer
+
+	@PutMapping("/customers")
+	public Customer updateCustomer(@RequestBody Customer customer) {
 
 		customerService.saveCustomer(customer);
 
